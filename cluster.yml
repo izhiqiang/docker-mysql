@@ -1,0 +1,37 @@
+version: "3"
+
+networks:
+  mysql-cluster:  # 网络
+    driver: bridge    # 桥接模式
+
+services:
+  mysql-master:
+    container_name: mysql-master
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./cluster/master.cnf:/etc/mysql/my.cnf
+      - ./cluster/master/log:/var/log/mysql
+      - ./cluster/master/data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - mysql-cluster
+
+  mysql-slave-1:
+    container_name: mysql-slave-1
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 33061:3306
+    privileged: true
+    volumes:
+      - ./cluster/slave-1.cnf:/etc/mysql/my.cnf
+      - ./cluster/slave-1/log:/var/log/mysql
+      - ./cluster/slave-1/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    networks:
+      - mysql-cluster
