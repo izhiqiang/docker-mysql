@@ -38,11 +38,13 @@ flush privileges;
 mysql -uroot -p123456 -Dmysql -e "flush privileges;"
 ~~~
 
+## 创建一个和root权限一样的用户
 
-
-
-
-
+~~~
+create user "zhiqiang"@"%" identified by "123456";
+GRANT ALL PRIVILEGES ON *.* TO 'zhiqiang'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+~~~
 
 ## 集群数据同步
 
@@ -63,5 +65,4 @@ CHANGE MASTER TO
     MASTER_LOG_POS=154;
 start slave;
 ~~~
-
 
