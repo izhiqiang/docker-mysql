@@ -7,7 +7,7 @@ networks:
 services:
   mysql-master:
     container_name: mysql-master
-    image: mysql:5.7
+    image: hkccr.ccs.tencentyun.com/buildx/hub:mysql-5.7
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=123456
@@ -22,7 +22,7 @@ services:
 
   mysql-slave-1:
     container_name: mysql-slave-1
-    image: mysql:5.7
+    image: hkccr.ccs.tencentyun.com/buildx/hub:mysql-5.7
     restart: always
     ports:
       - 33061:3306

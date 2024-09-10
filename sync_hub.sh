@@ -8,7 +8,7 @@ for tag in "${tags[@]}"
 do
     echo "Downloading mysql:$tag"
     docker pull mysql:$tag
-    echo "rename mysql:$tag -> registry.cn-hongkong.aliyuncs.com/buildx/hub:mysql-$tag"
-    docker tag mysql:$tag registry.cn-hongkong.aliyuncs.com/buildx/hub:mysql-$tag
-    docker push registry.cn-hongkong.aliyuncs.com/buildx/hub:mysql-$tag
+    echo "rename mysql:$tag -> hkccr.ccs.tencentyun.com/buildx/hub:mysql-$tag"
+    docker tag mysql:$tag hkccr.ccs.tencentyun.com/buildx/hub:mysql-$tag
+    docker push hkccr.ccs.tencentyun.com/buildx/hub:mysql-$tag
 done
